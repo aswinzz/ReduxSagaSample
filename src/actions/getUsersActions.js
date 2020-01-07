@@ -14,3 +14,19 @@ export const getUserRequest = (id) => {
         id
     });
 }
+
+export const deleteUserRequest = (id) => {
+    console.log("DELETE USER REQUEST ACTION RECIEVED WITH PARAMS ",id);
+    return ({
+        type: types.DELETE_USER_REQUEST,
+        id
+    });
+}
+
+export const addUserRequest = (payload) => {
+    console.log("ADD USER REQUEST ACTION RECIEVED WITH PAYLOAD ",payload);
+    return ({
+        type: types.ADD_USER_REQUEST,
+        payload
+    })
+}

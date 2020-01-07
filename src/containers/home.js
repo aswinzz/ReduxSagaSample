@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getAllUsersRequest, getUserRequest } from '../actions/getUsersActions'
+import { getAllUsersRequest, getUserRequest, deleteUserRequest, addUserRequest } from '../actions/getUsersActions'
 class Home extends React.Component {
   constructor(props) {
     super(props);
@@ -9,7 +9,13 @@ class Home extends React.Component {
 
   componentDidMount(){
     this.props.dispatch(getAllUsersRequest());
-    this.props.dispatch(getUserRequest(1));
+    this.props.dispatch(getUserRequest(4));
+    // this.props.dispatch(deleteUserRequest(1));
+    // this.props.dispatch(addUserRequest({
+    //   "userId":4,
+    //   "name":"test4",
+    //   "email":"test4@gmail.com"
+    // }));
   }
 
   render() {

@@ -1,5 +1,5 @@
 import { put, call } from 'redux-saga/effects';
-import { getAllUsers, getUser } from '../api/api';
+import { getAllUsers, getUser, deleteUser, addUser } from '../api/api';
 import * as types from '../constants/actionTypes';
 
 // Responsible for searching media library, making calls to the API
@@ -23,5 +23,29 @@ export function* getUserSaga(action){
         yield put({type: types.GET_USER_SUCCESS, user});
     } catch(error){
         yield put({ type: types.GET_USER_FAILURE, error});
+    }
+}
+
+export function* deleteUserSaga(action){
+    try {
+        console.log(action.id);
+        const user = yield call(deleteUser,action.id);
+        console.log("DELETED USER",user);
+        yield put({type: types.GET_ALL_USERS_REQUEST});
+        yield put({type: types.DELETE_USER_SUCCESS});
+    } catch(error){
+        yield put({ type: types.DELETE_USER_FAILURE, error});
+    }
+}
+
+export function* addUserSaga(action){
+    try {
+        console.log(action.payload);
+        const user = yield call(addUser,action.payload);
+        console.log("ADD USER",user);
+        yield put({type: types.GET_ALL_USERS_REQUEST});
+        yield put({type: types.ADD_USER_SUCCESS});
+    } catch(error){
+        yield put({ type: types.ADD_USER_FAILURE, error});
     }
 }
